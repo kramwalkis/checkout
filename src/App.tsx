@@ -1,11 +1,15 @@
 import './App.css'
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 function App() { 
 
   return (
-    <div className="text-3xl font-bold underline text-center bg-slate-300 p-3">
-      Hello inulti!!
-    </div>
+    <>
+      <Header/>
+      <section className='bg-gray-200 grow'></section>
+      <Footer/>
+    </>
   )
 }
 

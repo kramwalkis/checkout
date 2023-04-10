@@ -5,11 +5,15 @@ export default {
     extend: {
       colors: {
         darkish: "#2E2E2E",
+        white: "#ffffff",
+        grayish: "#E2E2E2"
       },
     },
     fontFamily: {
-      sans: ["Open Sans", "sans-serif"],
+      "open-sans": ["Open Sans", "sans-serif"],
+      "helvetica-neue": ["Helvetica Neue", "sans-serif"],
     },
+    
   },
   plugins: [],
 };

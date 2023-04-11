@@ -1,0 +1,52 @@
+.cell {
+    position: absolute;
+    border-radius: 50%;
+    height: 0.3rem;
+    width: 0.3rem;
+  }
+  
+  .cell0 {
+    animation: grow1;
+  }
+  .cell1 {
+    animation: grow2;
+  }
+  .cell2 {
+    animation: grow3;
+  }
+  .cell3 {
+    animation: grow4;
+  }
+  
+  @keyframes grow1 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(2);
+    }
+  }
+  @keyframes grow2 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(3);
+    }
+  }
+  @keyframes grow3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(4);
+    }
+  }
+  @keyframes grow4 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(6);
+    }
+  }

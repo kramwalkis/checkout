@@ -12,6 +12,7 @@ export interface CustomSelectProps {
   data: string[] | number[];
   initialPlaceholder: string | number;
   width: string;
+  resetValue?: boolean;
   onChange: (value: string | number, index: number) => void;
   index: number;
 }
@@ -89,14 +90,16 @@ export const validationSchema = Yup.object({
     }
   ),
   cardHolderName: Yup.string().required("Please enter a card holder name"),
-  cardNumber: Yup.string().required('Please enter card number').min(15, 'Please enter a valid card number'),
+  cardNumber: Yup.string()
+    .required("Please enter card number")
+    .min(15, "Please enter a valid card number"),
   expirationDate: Yup.string()
     .required("Enter card expiration date")
     .test("Test for current month", "Your card has expired", function (value) {
       return checkCardExpiration(value);
     }),
-    cvv: Yup.string().required('Enter CVV'),
-    zipcode: Yup.string().required('Enter Zip Code')
+  cvv: Yup.string().required("Enter CVV"),
+  zipcode: Yup.string().required("Enter Zip Code"),
 });
 
 export interface ZipCodeResults {

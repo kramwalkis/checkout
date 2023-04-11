@@ -8,6 +8,7 @@ const CustomSelect = ({
   width,
   onChange,
   index,
+  resetValue,
 }: CustomSelectProps) => {
   const [selectedValue, setSelectedValue] = useState("");
   const [optionsIsOpen, setOptionsIsOpen] = useState(false);
@@ -26,6 +27,12 @@ const CustomSelect = ({
       window.removeEventListener("mousedown", handleClickOutside);
     };
   }, [ref]);
+
+  useEffect(() => {
+    if (resetValue) {
+      setSelectedValue("");
+    }
+  }, [resetValue]);
 
   const setOption = (option: string | number, index: number) => {
     setSelectedValue(String(option));

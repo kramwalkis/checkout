@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useFormikContext, FormikValues } from "formik";
 import CustomSelect from "./CustomSelect";
 import { MONTHS, DAYS, YEARS } from "../../constants/dates";
@@ -5,8 +6,17 @@ import { MONTHS, DAYS, YEARS } from "../../constants/dates";
 
 const DateOfBirth = () => {
   const { setFieldValue, values, errors } = useFormikContext<FormikValues>();
+  const [formIsReset, setFormIsReset] = useState(false)
+
+  useEffect(()=> {
+    if (values.dateOfBirth.every((item: string | number)=> !item)) {
+      setFormIsReset(true)
+    } else {
+      setFormIsReset(false)
+    }
+  }, [values])
   
-  const handleChange = (value: string | number, index: number) => {
+  const handleChange = (value: string | number, index: number) => {    
     const { dateOfBirth } = values;
     dateOfBirth[index] = value;
     setFieldValue("dateOfBirth", [...dateOfBirth]);
@@ -22,6 +32,7 @@ const DateOfBirth = () => {
       <div className="flex gap-1 sm:gap-2.5 z-10">
         <CustomSelect
           onChange={handleChange}
+          resetValue={formIsReset}
           index={0}
           data={MONTHS}
           initialPlaceholder="Month"
@@ -29,6 +40,7 @@ const DateOfBirth = () => {
         />
         <CustomSelect
           onChange={handleChange}
+          resetValue={formIsReset}
           index={1}
           data={DAYS}
           initialPlaceholder="Day"
@@ -36,6 +48,7 @@ const DateOfBirth = () => {
         />
         <CustomSelect
           onChange={handleChange}
+          resetValue={formIsReset}
           index={2}
           data={YEARS}
           initialPlaceholder="Year"

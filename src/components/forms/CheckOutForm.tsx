@@ -13,8 +13,10 @@ import {
   FormValues,
   validationSchema,
 } from "../../interface/interfaces";
+import { useToggleModal } from "../../context/modalContext";
 
 const CheckOutForm: FC = () => {
+  const toggleModal = useToggleModal();
   return (
     <>
       <h2 className="font-helvetica-neue text-xl font-bold text-center mb-3.5 sm:mb-9">
@@ -23,7 +25,25 @@ const CheckOutForm: FC = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values: FormValues) => console.log(values)}
+        onSubmit={(values: FormValues, { resetForm, setFieldValue }) => {
+          fetch("https://jsonplaceholder.typicode.com/posts", {
+            method: "POST",
+            body: JSON.stringify({
+              title: "foo",
+              body: values,
+              userId: 1,
+            }),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+          })
+            .then((response) => response.json())
+            .then((json) => {              
+              resetForm();
+              setFieldValue("dateOfBirth", ["", "", ""]);
+              toggleModal();
+            });
+        }}
       >
         {({
           handleSubmit,
@@ -33,8 +53,8 @@ const CheckOutForm: FC = () => {
           touched,
           handleBlur,
           setFieldValue,
+          handleReset,
         }) => {
-          console.log(errors);
           const addDefaultCardHolderName = (
             event: React.FocusEvent<HTMLInputElement>
           ) => {
@@ -112,7 +132,9 @@ const CheckOutForm: FC = () => {
                   numbersOnly={true}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.cardNumber && touched.cardNumber && errors.cardNumber}
+                  error={
+                    errors.cardNumber && touched.cardNumber && errors.cardNumber
+                  }
                   maxLength={19}
                   creditCard={true}
                   className="primary-input w-full"

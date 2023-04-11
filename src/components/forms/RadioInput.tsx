@@ -1,27 +1,21 @@
-import { useState } from "react";
-
-const RadioInput = ({ name, values }: { name: string; values: string[] }) => {
-  const [value, setValue] = useState(values[0]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      setValue(e.target.value);
-    }
-  };
+import { RadioInputProps } from "../../interface/interfaces";
+const RadioInput = ({ name, values, value, onChange }: RadioInputProps) => {
   return (
     <>
       <label
         className="font-helvetica-neue text-base font-bold pb-1"
         htmlFor={name}
       >
-        {name}
+        {name.charAt(0).toUpperCase() + name.slice(1)}
       </label>
       <div className="flex justify-between gap-3">
         {values.map((item) => (
           <div
             key={item}
             className={`w-full flex justify-center items-center rounded gap-2 px-3 py-2 border ${
-              item === value ? "bg-blue-600" : null
+              item === value
+                ? "bg-blue-600 transition ease-in-out delay-100"
+                : null
             } ${item === value ? "border-blue-600" : null}`}
           >
             <input
@@ -30,7 +24,7 @@ const RadioInput = ({ name, values }: { name: string; values: string[] }) => {
               checked={item === value ? true : false}
               name={name}
               value={item}
-              onChange={handleChange}
+              onChange={onChange}
             />
             <label
               className={`font-helvetica-neue text-lg ${
@@ -38,7 +32,7 @@ const RadioInput = ({ name, values }: { name: string; values: string[] }) => {
               }`}
               htmlFor={item}
             >
-              {item}
+              {item.charAt(0).toUpperCase() + item.slice(1)}
             </label>
           </div>
         ))}

@@ -5,7 +5,7 @@
 
 @layer components {
   .primary-input {
-    @apply border rounded border-zinc-300 h-9 sm:h-10 p-2;
+    @apply border rounded border-zinc-300 h-9 sm:h-10 p-2 focus:outline-none focus:border-zinc-500;
   }
 
   .primary-label {

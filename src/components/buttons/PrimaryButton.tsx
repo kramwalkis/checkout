@@ -1,8 +1,4 @@
-interface ButtonProps {
-  name: string;
-  className: string;
-  type: "button" | "submit" | "reset" | undefined;
-}
+import { ButtonProps } from "../../interface/interfaces";
 
 const PrimaryButton = ({ name, className, type }: ButtonProps) => {
   return (

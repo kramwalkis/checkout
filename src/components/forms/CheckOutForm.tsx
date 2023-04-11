@@ -38,7 +38,7 @@ const CheckOutForm: FC = () => {
             },
           })
             .then((response) => response.json())
-            .then((json) => {              
+            .then(() => {
               resetForm();
               setFieldValue("dateOfBirth", ["", "", ""]);
               toggleModal();
@@ -53,11 +53,8 @@ const CheckOutForm: FC = () => {
           touched,
           handleBlur,
           setFieldValue,
-          handleReset,
         }) => {
-          const addDefaultCardHolderName = (
-            event: React.FocusEvent<HTMLInputElement>
-          ) => {
+          const addDefaultCardHolderName = () => {
             if (!values.cardHolderName) {
               setFieldValue("cardHolderName", values.fullName);
             }

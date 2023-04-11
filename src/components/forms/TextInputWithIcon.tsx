@@ -16,7 +16,7 @@ const TextInputWithIcon = ({
   icon,
   error,
   numbersOnly,
-}: InputWithIconProps) => {  
+}: InputWithIconProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (numbersOnly) {
       e.target.value = e.target.value.replace(/[^0-9]/g, "");

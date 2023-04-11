@@ -3,20 +3,19 @@ import { useFormikContext, FormikValues } from "formik";
 import CustomSelect from "./CustomSelect";
 import { MONTHS, DAYS, YEARS } from "../../constants/dates";
 
-
 const DateOfBirth = () => {
   const { setFieldValue, values, errors } = useFormikContext<FormikValues>();
-  const [formIsReset, setFormIsReset] = useState(false)
+  const [formIsReset, setFormIsReset] = useState(false);
 
-  useEffect(()=> {
-    if (values.dateOfBirth.every((item: string | number)=> !item)) {
-      setFormIsReset(true)
+  useEffect(() => {
+    if (values.dateOfBirth.every((item: string | number) => !item)) {
+      setFormIsReset(true);
     } else {
-      setFormIsReset(false)
+      setFormIsReset(false);
     }
-  }, [values])
-  
-  const handleChange = (value: string | number, index: number) => {    
+  }, [values]);
+
+  const handleChange = (value: string | number, index: number) => {
     const { dateOfBirth } = values;
     dateOfBirth[index] = value;
     setFieldValue("dateOfBirth", [...dateOfBirth]);

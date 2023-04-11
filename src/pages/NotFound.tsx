@@ -1,6 +1,6 @@
 import Cell from "../components/layouts/Cell";
 
-let colors: string[] = [];
+const colors: string[] = [];
 for (let i = 0; i < 120; i++) {
   colors.push("#" + Math.floor(Math.random() * 16777215).toString(16));
 }

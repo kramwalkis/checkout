@@ -1,23 +1,30 @@
 import "./App.css";
-import Header from "./components/layouts/Header";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Footer from "./components/layouts/Footer";
+import Header from "./components/layouts/Header";
 import { ModalProvider } from "./context/modalContext";
 import ModalPortal from "./components/layouts/Modal";
+import NotFound from "./pages/NotFound";
 
-import CheckOutForm from "./components/forms/CheckOutForm";
+import CheckOut from "./pages/CheckOut";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <>
       <ModalProvider>
-        <ModalPortal/>
-          <Header />
-          <section className="grow flex items-center justify-center bg-gray-200">
-            <div className="bg-white rounded py-6 sm:py-9 px-5 sm:px-6 mx-4 sm:mx-0 mt-4 sm:mt-9 mb-3 sm:mb-12">
-              <CheckOutForm />
-            </div>
-          </section>
-          <Footer />        
+        <ModalPortal />
+        <Header />
+        <section className="grow flex items-center justify-center bg-gray-200">
+          <BrowserRouter>
+            <Routes>
+              <Route path="*" element={<NotFound/>} />
+              <Route path="/" element={<Home />} />
+              <Route path="/checkout" element={<CheckOut />} />
+            </Routes>
+          </BrowserRouter>
+        </section>
+        <Footer />
       </ModalProvider>
     </>
   );
